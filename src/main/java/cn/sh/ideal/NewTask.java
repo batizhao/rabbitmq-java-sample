@@ -3,41 +3,35 @@ package cn.sh.ideal;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.MessageProperties;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /**
  * @author: batizhao
  * @since: 11-6-27 下午5:33
  */
 public class NewTask {
-    private static final String QUEUE_NAME = "hello";
+    private static final String QUEUE_NAME = "task_queues";
 
-    private static String getMessage(String[] strings) {
-        if (strings.length < 1)
-            return "Hello World!";
-        return joinStrings(strings, " ");
-    }
-
-    private static String joinStrings(String[] strings, String delimiter) {
-        int length = strings.length;
-        if (length == 0) return "";
-        StringBuilder words = new StringBuilder(strings[0]);
-        for (int i = 1; i < length; i++) {
-            words.append(delimiter).append(strings[i]);
-        }
-        return words.toString();
-    }
-
-    public static void main(String[] argv) throws java.io.IOException {
+    public static void main(String[] arg) throws java.io.IOException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        //Message durability
+        boolean durable = true;
+        channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
 
-        String message = getMessage(argv);
-        channel.basicPublish("", "hello", null, message.getBytes());
-        System.out.println(" [x] Sent '" + message + "'");
+        String world = "one,two,tree,four,five,six,seven,eight,nine,ten";
+        String message[] = world.split(",");
+
+        for (int i = 0; i < message.length; i++) {
+            channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message[i].getBytes());
+            System.out.println(" [x] Sent '" + message[i] + "'");
+        }
 
         channel.close();
         connection.close();
