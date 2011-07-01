@@ -1,9 +1,11 @@
-package cn.sh.ideal;
+package cn.sh.ideal.HelloWorld;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
+
+import java.io.IOException;
 
 /**
  * @author: batizhao
@@ -12,8 +14,11 @@ import com.rabbitmq.client.QueueingConsumer;
 public class Recv {
     private final static String QUEUE_NAME = "hello";
 
-    public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException {
+    public static void main(String[] argv) throws IOException, InterruptedException {
+        recv();
+    }
 
+    public static void recv() throws IOException, InterruptedException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
@@ -30,6 +35,5 @@ public class Recv {
             String message = new String(delivery.getBody());
             System.out.println(" [x] Received '" + message + "'");
         }
-
     }
 }

@@ -1,12 +1,11 @@
-package cn.sh.ideal;
+package cn.sh.ideal.WorkQueues;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 
 /**
  * @author: batizhao
@@ -15,7 +14,7 @@ import java.io.InputStreamReader;
 public class NewTask {
     private static final String QUEUE_NAME = "task_queues";
 
-    public static void main(String[] arg) throws java.io.IOException {
+    public static void main(String[] arg) throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();

@@ -1,9 +1,11 @@
-package cn.sh.ideal;
+package cn.sh.ideal.WorkQueues;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
+
+import java.io.IOException;
 
 /**
  * @author: batizhao
@@ -12,7 +14,7 @@ import com.rabbitmq.client.QueueingConsumer;
 public class Worker {
     private final static String QUEUE_NAME = "task_queues";
 
-    public static void main(String[] argv) throws java.io.IOException, java.lang.InterruptedException {
+    public static void main(String[] argv) throws IOException, InterruptedException {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
