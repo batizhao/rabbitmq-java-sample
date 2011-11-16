@@ -8,20 +8,20 @@ rabbitmq-java-sample 是一个使用 [RabbitMQ](http://www.rabbitmq.com) 的 Jav
 可能用到的几个常用命令
 -------------------------------------------------------
 
-查看 queues, vhosts, permissions
+查看 queues, vhosts, permissions：
 
     $ rabbitmqctl list_queues
     $ rabbitmqctl list_vhosts
     $ rabbitmqctl list_permissions
 
-强制重置 rabbit server
+强制重置 rabbit：
 
     $ rabbitmqctl stop_app
     $ rabbitmqctl force_reset
     $ rabbitmqctl start_app
 
-重置rabbitmq，会有以下影响：
+重置 rabbit ，会有以下影响：
 
-* 从集群节点中删除。
-* 删除 db 数据，如 user，vhost 信息，持久化消息。
++ 从集群节点中删除。
++ 删除 db 数据，如 user，vhost，持久化消息。
 
