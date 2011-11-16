@@ -2,26 +2,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.sh.ideal</groupId>
-    <artifactId>message-queues</artifactId>
+    <groupId>me.batizhao</groupId>
+    <artifactId>rabbitmq-java-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>message-queues</name>
-    <url>http://maven.apache.org</url>
+    <name>rabbitmq-java-sample</name>
+    <url>https://github.com/batizhao/rabbitmq-java-sample</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
+    <developers>
+        <developer>
+            <name>batizhao</name>
+            <email>zhaobati@gmail.com</email>
+        </developer>
+    </developers>
 
+    <dependencies>
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
